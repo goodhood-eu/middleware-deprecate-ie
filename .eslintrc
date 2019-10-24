@@ -1,0 +1,6 @@
+{
+  "extends": "nebenan-base",
+  "env": {
+    "node": true
+  }
+}
