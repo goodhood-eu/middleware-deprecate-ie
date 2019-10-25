@@ -35,10 +35,7 @@ describe('lib/utils.js', () => {
   });
 
   it('sanitizes objects', () => {
-    const obj = {
-      prop: '<script>alert(1)</script>',
-    };
-
+    const obj = { prop: '<script>alert(1)</script>' };
     const expected = '&lt;script&gt;alert(1)&lt;/script&gt;';
 
     expect(utils.sanitizeObject(obj).prop).to.be.equal(expected);
