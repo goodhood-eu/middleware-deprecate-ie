@@ -2,6 +2,8 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
 
+const ua = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko';
+
 
 describe('lib/middleware.js', () => {
   let middleware;
@@ -16,7 +18,7 @@ describe('lib/middleware.js', () => {
 
   beforeEach(() => {
     render = sinon.spy();
-    isIE = sinon.spy();
+    isIE = sinon.spy((string) => (string === ua));
     sanitizeObject = sinon.spy();
 
     middleware = proxyquire('../../lib/middleware', {
@@ -49,7 +51,7 @@ describe('lib/middleware.js', () => {
   });
 
   it('IE with cookie skipped', () => {
-    isIE = sinon.stub().returns(true);
+    req.headers['user-agent'] = ua;
     req.cookies.skip = 'true';
     middleware({ cookie: 'skip' })(req, res, next);
 
@@ -60,11 +62,23 @@ describe('lib/middleware.js', () => {
   });
 
   it('IE with no cookie renders landing', () => {
-    isIE = sinon.stub().returns(true);
+    req.headers['user-agent'] = ua;
     middleware({})(req, res, next);
 
     expect(isIE.calledOnce).to.be.true;
     expect(next.notCalled).to.be.true;
+    expect(sanitizeObject.notCalled).to.be.true;
+    expect(render.calledOnce).to.be.true;
+    expect(res.send.calledOnce).to.be.true;
+  });
+
+  it('IE with no cookie renders sanitized', () => {
+    req.headers['user-agent'] = ua;
+    middleware({ sanitize: true })(req, res, next);
+
+    expect(isIE.calledOnce).to.be.true;
+    expect(next.notCalled).to.be.true;
+    expect(sanitizeObject.calledOnce).to.be.true;
     expect(render.calledOnce).to.be.true;
     expect(res.send.calledOnce).to.be.true;
   });
