@@ -6,7 +6,7 @@
   "readmeFilename": "README.md",
   "repository": "goodhood-eu/middleware-deprecate-ie",
   "bugs": "https://github.com/goodhood-eu/middleware-deprecate-ie/issues",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "keywords": [
     "express",
     "expressjs",
@@ -17,18 +17,24 @@
   "main": "index.js",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "test": "TZ='GMT' mocha \"test/**/*.js\""
+    "check": "npm run lint && echo \"\\033[0;32mReady to publish\\033[0m\"",
+    "clean": "rm -rf ./dist/ || exit 1",
+    "compile": "NODE_ENV=production babel ./client/ --out-dir ./dist/ --copy-files",
+    "minify": "find ./dist/ -name '*.js' -exec terser {} -o {} --config-file terser.json \\;",
+    "build": "npm run compile && npm run minify",
+    "prepublishOnly": "npm run check && npm run clean && npm run build",
+    "lint": "eslint --ext .es,.js ./"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "eslint": "^6.8.0",
     "eslint-config-nebenan-base": "^1.3.1",
-    "mocha": "^7.1.1",
-    "proxyquire": "^2.1.3",
-    "sinon": "^9.0.1"
+    "express": "^4.17.1",
+    "terser": "^4.6.11"
   },
   "dependencies": {
-    "escape-html": "^1.0.3",
     "lodash.get": "4.4.2"
   }
 }
