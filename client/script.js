@@ -4,6 +4,7 @@
   const hash = (string) => btoa(string).replace(/=/g, '');
   const getSelector = (selector) => `middleware-deprecate-ie-${hash(selector)}`;
   const inject = (key, content) => document[key].insertAdjacentHTML('beforeend', content);
+  const remove = (node) => node.parentNode.removeChild(node);
 
   inject('head', `
     <style id="${getSelector('css')}" type="text/css">
@@ -98,8 +99,8 @@
 
   const handler = () => {
     $button.removeEventListener('click', handler);
-    $css.remove();
-    $html.remove();
+    remove($css);
+    remove($html);
   };
 
   $button.addEventListener('click', handler);
