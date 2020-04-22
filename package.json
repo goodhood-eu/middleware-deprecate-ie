@@ -6,7 +6,7 @@
   "readmeFilename": "README.md",
   "repository": "goodhood-eu/middleware-deprecate-ie",
   "bugs": "https://github.com/goodhood-eu/middleware-deprecate-ie/issues",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "keywords": [
     "express",
     "expressjs",

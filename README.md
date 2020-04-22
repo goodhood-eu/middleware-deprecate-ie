@@ -7,7 +7,7 @@ ExpressJS middleware that helps to serve a modal to all Internet Explorer users 
 
 1. In your project root run:
 ```
-ln -s ./node_modules/middleware-deprecate-ie ./public/deprecate-ie
+ln -s ./node_modules/middleware-deprecate-ie/dist ./public/deprecate-ie
 ```
 
 Where `./public` is your public folder to be served by the web server. Replace paths appropriately.

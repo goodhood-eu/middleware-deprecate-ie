@@ -1,0 +1,10 @@
+!./dist
+
+.babelrc
+.browserslistrc
+.eslintignore
+.eslintrc
+demo.js
+client/script.js
+terser.json
+README.md
