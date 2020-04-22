@@ -2,7 +2,9 @@ const express = require('express');
 
 const app = express();
 
-app.use(require('.')());
+app.use(require('serve-static')(`${__dirname}/dist`, { redirect: false }));
+app.use(require('.')({ assetsPath: '' }));
+
 
 app.get('*', (req, res) => res.send(`
 <!doctype html>
@@ -14,6 +16,7 @@ app.get('*', (req, res) => res.send(`
 
   <body>
     <p>Hello world! This is a demo page.</p>
+    ${res.locals.getIE11DeprecationScript()}
   </body>
 </html>
 `));

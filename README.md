@@ -5,17 +5,25 @@ ExpressJS middleware that helps to serve a modal to all Internet Explorer users 
 
 ## Usage:
 
-```javascript
-app.use(require('middleware-deprecate-ie')());
-```
-
-In your project root run:
-
+1. In your project root run:
 ```
 ln -s ./node_modules/middleware-deprecate-ie ./public/deprecate-ie
 ```
 
 Where `./public` is your public folder to be served by the web server. Replace paths appropriately.
+
+
+2. Inject functions like this:
+
+```javascript
+app.use(require('middleware-deprecate-ie')());
+```
+
+3. Use injetor function in your template to serve the script:
+```
+// somewhere in the template
+${res.locals.getIE11DeprecationScript()}
+```
 
 ## Options
 
