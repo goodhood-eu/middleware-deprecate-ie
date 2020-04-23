@@ -1,16 +1,14 @@
 {
-  "name": "middleware-deprecate-ie",
-  "description": "ExpressJS middleware that shows a landing screen to all Internet Explorer users preventing them from accessing the website",
+  "name": "modal-deprecate-ie",
+  "description": "A script that helps to serve a modal to all Internet Explorer users preventing them from accessing the website",
   "author": "Max Degterev <max@nebenan.de>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "repository": "goodhood-eu/middleware-deprecate-ie",
-  "bugs": "https://github.com/goodhood-eu/middleware-deprecate-ie/issues",
-  "version": "2.0.0-beta.3",
+  "repository": "goodhood-eu/modal-deprecate-ie",
+  "bugs": "https://github.com/goodhood-eu/modal-deprecate-ie/issues",
+  "version": "1.0.0",
   "keywords": [
-    "express",
-    "expressjs",
-    "middleware",
+    "modal",
     "internet explorer",
     "deprecate"
   ],
@@ -37,8 +35,5 @@
     "nodemon": "^2.0.3",
     "serve-static": "^1.14.1",
     "terser": "^4.6.11"
-  },
-  "dependencies": {
-    "lodash.get": "4.4.2"
   }
 }

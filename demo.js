@@ -1,10 +1,8 @@
-const express = require('express');
+const app = require('express')();
 
-const app = express();
+const html = require('.')({ assetsPath: '' });
 
 app.use(require('serve-static')(`${__dirname}/dist`, { redirect: false }));
-app.use(require('.')({ assetsPath: '' }));
-
 
 app.get('*', (req, res) => res.send(`
 <!doctype html>
@@ -16,7 +14,7 @@ app.get('*', (req, res) => res.send(`
 
   <body>
     <p>Hello world! This is a demo page.</p>
-    ${res.locals.getIE11DeprecationScript()}
+    ${html}
   </body>
 </html>
 `));

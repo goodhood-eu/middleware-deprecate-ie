@@ -1,12 +1,12 @@
 (function() {
-  const lang = window.__MIDDLEWARE_DEPRECATE_IE_LOCALE__;
+  const lang = window.__MODAL_DEPRECATE_IE_LOCALE__;
 
   const hash = (string) => btoa(string).replace(/=/g, '');
-  const getSelector = (selector) => `middleware-deprecate-ie-${hash(selector)}`;
-  const inject = (key, content) => document[key].insertAdjacentHTML('beforeend', content);
-  const remove = (node) => node.parentNode.removeChild(node);
+  const getSelector = (selector) => `modal-deprecate-ie-${hash(selector)}`;
+  const addNode = (key, content) => document[key].insertAdjacentHTML('beforeend', content);
+  const removeNode = (node) => node.parentNode.removeChild(node);
 
-  inject('head', `
+  addNode('head', `
     <style id="${getSelector('css')}" type="text/css">
       .${getSelector('modal')} {
         width: 100%;
@@ -20,7 +20,7 @@
         background: #edede9;
         font: normal 14px/16px Arial, sans-serif;
         color: #757575;
-        z-index: 2147483647; // Max value for IE11
+        z-index: 2147483647; // Max value for IE > 6
       }
 
       .${getSelector('content')} {
@@ -74,7 +74,7 @@
     </style>
   `);
 
-  inject('body', `
+  addNode('body', `
     <div id="${getSelector('html')}" class="${getSelector('modal')}">
       <div class="${getSelector('content')}">
         <h1>${lang.headline}</h1>
@@ -99,8 +99,8 @@
 
   const handler = () => {
     $button.removeEventListener('click', handler);
-    remove($css);
-    remove($html);
+    removeNode($css);
+    removeNode($html);
   };
 
   $button.addEventListener('click', handler);
