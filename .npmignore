@@ -1,10 +1,7 @@
+client/script.js
 !./dist
-
-.babelrc
 .browserslistrc
 .eslintignore
 .eslintrc
+build.js
 demo.js
-client/script.js
-terser.json
-README.md
