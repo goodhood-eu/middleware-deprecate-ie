@@ -1,6 +1,8 @@
 const app = require('express')();
 
+require('./build');
 const html = require('.')({ assetsPath: '' });
+
 
 app.use(require('serve-static')(`${__dirname}/dist`, { redirect: false }));
 
